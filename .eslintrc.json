@@ -20,7 +20,7 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": false
+        "endOfLine": "auto"
       }
     ],
     "camelcase": "off",
