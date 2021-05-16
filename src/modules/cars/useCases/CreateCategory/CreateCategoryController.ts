@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 
 import { Category } from "../../model/Category";
 import { CategoriesRepositoryImpl } from "../../repositories/Category/CategoriesRepositoryImpl";
