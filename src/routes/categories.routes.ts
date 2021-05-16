@@ -5,9 +5,9 @@ import { CreateCategoryService } from "../modules/cars/services/Category/CreateC
 
 const categoriesRoutes = Router();
 const categoryRepository = new CategoriesRepositoryImpl();
-const createCategoryService = new CreateCategoryService(categoryRepository);
 
 categoriesRoutes.post("/", (request, response) => {
+  const createCategoryService = new CreateCategoryService(categoryRepository);
   const { name, description } = request.body;
 
   const category = createCategoryService.execute({ name, description });
