@@ -66,6 +66,7 @@
   },
   "settings": {
     "import/resolver": {
+      "node": {},
       "typescript": {}
     }
   }
