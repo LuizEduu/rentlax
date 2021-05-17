@@ -7,8 +7,19 @@ import {
 class SpecificationsRepositoryImpl implements ISpecificationsRepository {
   private specifications: Specification[];
 
-  constructor() {
+  private static INSTANCE: SpecificationsRepositoryImpl;
+
+  private constructor() {
     this.specifications = [];
+  }
+
+  public static getInstance() {
+    if (!SpecificationsRepositoryImpl.INSTANCE) {
+      SpecificationsRepositoryImpl.INSTANCE =
+        new SpecificationsRepositoryImpl();
+    }
+
+    return SpecificationsRepositoryImpl.INSTANCE;
   }
 
   create({ name, description }: ICreateSpecificationDTO): Specification {
