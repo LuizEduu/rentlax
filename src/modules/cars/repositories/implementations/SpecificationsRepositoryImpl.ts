@@ -13,7 +13,7 @@ class SpecificationsRepositoryImpl implements ISpecificationsRepository {
     this.specifications = [];
   }
 
-  public static getInstance() {
+  public static getInstance(): SpecificationsRepositoryImpl {
     if (!SpecificationsRepositoryImpl.INSTANCE) {
       SpecificationsRepositoryImpl.INSTANCE =
         new SpecificationsRepositoryImpl();
