@@ -5,7 +5,7 @@ import { specificationRouter } from "./Specifications.routes";
 
 const router = Router();
 
-/* Seta o path inicial como categories */
+/* Seta o path inicial das rotas */
 router.use("/categories", categoriesRoutes);
 router.use("/specifications", specificationRouter);
 

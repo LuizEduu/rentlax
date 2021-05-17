@@ -6,7 +6,9 @@ import { listCategoriesController } from "../modules/cars/useCases/ListCategorie
 
 const categoriesRoutes = Router();
 
-const upload = multer();
+const upload = multer({
+  dest: "./tmp",
+});
 
 categoriesRoutes.post("/", (request, response) =>
   createCategoryController.handle(request, response)
@@ -14,6 +16,15 @@ categoriesRoutes.post("/", (request, response) =>
 
 categoriesRoutes.get("/", (request, response) =>
   listCategoriesController.handle(request, response)
+);
+
+categoriesRoutes.patch(
+  "/import",
+  upload.single("file"),
+  (request, response) => {
+    const { file } = request;
+    return response.json(file);
+  }
 );
 
 export { categoriesRoutes };
