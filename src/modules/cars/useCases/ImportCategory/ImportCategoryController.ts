@@ -8,7 +8,9 @@ class ImportCategoryController {
   handle(request: Request, response: Response): Response {
     const { file } = request;
 
-    return response.json(file);
+    const updatedFile = this.importCategoryUseCase.execute(file);
+
+    return response.json(updatedFile);
   }
 }
 
