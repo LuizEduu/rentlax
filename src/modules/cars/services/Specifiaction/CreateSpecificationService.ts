@@ -2,7 +2,7 @@ import { Specification } from "../../model/Specification";
 import {
   ICreateSpecificationDTO,
   ISpecificationsRepository,
-} from "../../repositories/Specification/ISpecificationsRepository";
+} from "../../repositories/ISpecificationsRepository";
 
 class CreateSpecificationService {
   constructor(private specificationRepository: ISpecificationsRepository) {}
