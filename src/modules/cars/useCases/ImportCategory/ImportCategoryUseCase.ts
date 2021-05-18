@@ -33,6 +33,7 @@ class ImportCategoryUseCase {
         })
         // ouve o evento de quando finalizou a leitura do arquivo e coloca no resolve
         .on("end", () => {
+          fs.promises.unlink(file.path);
           resolve(importCategories);
         })
         // ouve o evento se deu erro na leitura do arquivo e coloca na reject
