@@ -22,8 +22,8 @@ categoriesRoutes.get("/", (request, response) =>
 categoriesRoutes.patch(
   "/import",
   upload.single("file"),
-  (request, response) => {
-    importCategoriesController.handle(request, response);
+  async (request, response) => {
+    await importCategoriesController.handle(request, response);
   }
 );
 
