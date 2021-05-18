@@ -14,35 +14,49 @@ class ImportCategoryUseCase {
   loadCategories(file: Express.Multer.File): Promise<IImportCategories[]> {
     return new Promise((resolve, reject) => {
       const stream = fs.createReadStream(file.path); // stream para fazer leitura do arquivo
+
       const importCategories: IImportCategories[] = [];
 
       const parseFile = csvParse(); // lib para auxiliar no parse e leitura do csv
 
       stream.pipe(parseFile); // pipe faz a leitura dos chunks do file e repassa para o parseFile
 
-      parseFile.on("data", async (line) => {
-        const [name, description] = line;
+      // ouve o evento se tiver o file tiver conteudo executa a callback
+      parseFile
+        .on("data", async (line) => {
+          const [name, description] = line;
 
-        importCategories.push({
-          name,
-          description,
+          importCategories.push({
+            name,
+            description,
+          });
+        })
+        // ouve o evento de quando finalizou a leitura do arquivo e coloca no resolve
+        .on("end", () => {
+          resolve(importCategories);
+        })
+        // ouve o evento se deu erro na leitura do arquivo e coloca na reject
+        .on("error", (err) => {
+          reject(err.message);
         });
-      });
-
-      parseFile.on("end", () => {
-        resolve(importCategories);
-      });
-
-      parseFile.on("error", (err) => {
-        reject(err);
-      });
     });
   }
 
   async execute(file: Express.Multer.File): Promise<IImportCategories[]> {
     const categories = await this.loadCategories(file);
 
-    console.log(categories);
+    categories.map(async (category) => {
+      const { name, description } = category;
+
+      const existsCategory = this.categoriesRepository.findByName(name);
+
+      if (!existsCategory) {
+        this.categoriesRepository.create({
+          name,
+          description,
+        });
+      }
+    });
 
     return categories;
   }
