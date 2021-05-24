@@ -19,9 +19,7 @@ class CategoriesRepositoryImpl implements ICategoriesRepository {
       description,
     });
 
-    const savedCategory = await this.repository.save(category);
-
-    return savedCategory;
+    return this.repository.save(category);
   }
 
   list(): Promise<Category[]> {
