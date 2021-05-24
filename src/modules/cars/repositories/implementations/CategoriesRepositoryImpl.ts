@@ -1,4 +1,4 @@
-import { EntityRepository, getRepository, Repository } from "typeorm";
+import { getRepository, Repository } from "typeorm";
 
 import { Category } from "../../entities/Category";
 import {
