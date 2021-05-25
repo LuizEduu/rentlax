@@ -1,4 +1,4 @@
-import { CategoriesRepositoryImpl } from "../../repositories/implementations/CategoriesRepositoryImpl";
+/* import { CategoriesRepositoryImpl } from "../../repositories/implementations/CategoriesRepositoryImpl";
 import { CreateCategoryController } from "./CreateCategoryController";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
@@ -13,3 +13,4 @@ export default (): CreateCategoryController => {
 
   return createCategoryController;
 };
+ */
