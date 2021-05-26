@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { container } from "tsyringe";
+import { container, inject, injectable } from "tsyringe";
 
 import { Specification } from "../../entities/Specification";
 import { CreateSpecificationUseCase } from "./CreateSpecificationUseCase";
