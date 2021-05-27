@@ -11,7 +11,7 @@ class ImportCategoryController {
 
     const updatedFile = await importCategoryUseCase.execute(file);
 
-    return response.json(updatedFile);
+    return response.status(201).json(updatedFile);
   }
 }
 
