@@ -10,14 +10,12 @@ class CreateUserController {
     response: Response
   ): Promise<Response<User | Error>> {
     const createUserUseCase = container.resolve(CreateUserUseCase);
-    const { name, username, password, email, admin, driver_license } =
-      request.body;
+    const { name, username, password, email, driver_license } = request.body;
     const user = await createUserUseCase.execute({
       name,
       username,
       password,
       email,
-      admin,
       driver_license,
     });
 

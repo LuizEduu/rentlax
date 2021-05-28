@@ -4,7 +4,7 @@ interface ICreateUserDTO {
   password: string;
   email: string;
   driver_license: string;
-  admin: boolean;
+  admin?: boolean;
 }
 
 export { ICreateUserDTO };

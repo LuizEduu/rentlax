@@ -15,7 +15,6 @@ class CreateUserUseCase {
     username,
     password,
     email,
-    admin,
     driver_license,
   }: ICreateUserDTO): Promise<User | Error> {
     const user = await this.userRepository.create({
@@ -23,7 +22,7 @@ class CreateUserUseCase {
       username,
       password,
       email,
-      admin,
+      admin: false,
       driver_license,
     });
 
