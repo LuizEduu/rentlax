@@ -1,9 +1,15 @@
+import { inject, injectable } from "tsyringe";
+
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { User } from "../../entities/user";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
+@injectable()
 class CreateUserUseCase {
-  constructor(private userRepository: IUsersRepository) {}
+  constructor(
+    @inject("UsersRepositoryImpl")
+    private userRepository: IUsersRepository
+  ) {}
   async execute({
     name,
     username,
