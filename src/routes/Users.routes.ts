@@ -1,11 +1,13 @@
 import { Router } from "express";
 
-import createUserController from "../modules/accounts/useCases/createUser";
+import { CreateUserController } from "../modules/accounts/useCases/createUser/CreateUserController";
+
+const createUserController = new CreateUserController();
 
 const usersRouter = Router();
 
 usersRouter.post("/", async (request, response) =>
-  createUserController().handle(request, response)
+  createUserController.handle(request, response)
 );
 
 export { usersRouter };
