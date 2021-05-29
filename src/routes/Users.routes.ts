@@ -4,10 +4,10 @@ import { CreateUserController } from "../modules/accounts/useCases/createUser/Cr
 
 const createUserController = new CreateUserController();
 
-const usersRouter = Router();
+const usersRouters = Router();
 
-usersRouter.post("/", async (request, response) =>
+usersRouters.post("/", async (request, response) =>
   createUserController.handle(request, response)
 );
 
-export { usersRouter };
+export { usersRouters };
