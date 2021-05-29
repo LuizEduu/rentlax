@@ -9,20 +9,16 @@ class CreateCategoryController {
     request: Request,
     response: Response
   ): Promise<Response<Category | Error>> {
-    try {
-      const { name, description } = request.body;
+    const { name, description } = request.body;
 
-      const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
+    const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
 
-      const category = await createCategoryUseCase.execute({
-        name,
-        description,
-      });
+    const category = await createCategoryUseCase.execute({
+      name,
+      description,
+    });
 
-      return response.status(201).json(category);
-    } catch (e) {
-      return response.status(400).json({ error: e.message });
-    }
+    return response.status(201).json(category);
   }
 }
 

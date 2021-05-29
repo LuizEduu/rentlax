@@ -9,22 +9,16 @@ class CreateSpecificationController {
     request: Request,
     response: Response
   ): Promise<Response<Specification | Error>> {
-    try {
-      const { name, description } = request.body;
+    const { name, description } = request.body;
 
-      const specificationUseCase = container.resolve(
-        CreateSpecificationUseCase
-      );
+    const specificationUseCase = container.resolve(CreateSpecificationUseCase);
 
-      const specification = await specificationUseCase.execute({
-        name,
-        description,
-      });
+    const specification = await specificationUseCase.execute({
+      name,
+      description,
+    });
 
-      return response.status(201).json(specification);
-    } catch (e) {
-      return response.status(400).json({ error: e.message });
-    }
+    return response.status(201).json(specification);
   }
 }
 

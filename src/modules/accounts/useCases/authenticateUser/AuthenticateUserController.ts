@@ -9,22 +9,16 @@ class AuthenticateUserController {
     request: Request,
     response: Response
   ): Promise<Response<IResponse>> {
-    try {
-      const authenticateUserUseCase = container.resolve(
-        AuthenticateUserUseCase
-      );
+    const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase);
 
-      const { email, password } = request.body;
+    const { email, password } = request.body;
 
-      const { user, token } = await authenticateUserUseCase.execute({
-        email,
-        password,
-      });
+    const { user, token } = await authenticateUserUseCase.execute({
+      email,
+      password,
+    });
 
-      return response.json({ user, token });
-    } catch (e) {
-      return response.status(400).json({ error: e.message });
-    }
+    return response.json({ user, token });
   }
 }
 
