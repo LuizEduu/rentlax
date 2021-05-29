@@ -41,12 +41,13 @@ export class CreateUser1622234852670 implements MigrationInterface {
           },
 
           {
-            name: "admin",
+            name: "isAdmin",
             type: "boolean",
+            default: false,
           },
 
           {
-            name: "created__at",
+            name: "created_at",
             type: "timestamp",
             default: "now()",
           },

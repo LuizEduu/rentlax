@@ -16,7 +16,6 @@ class UsersRepositoryImpl implements IUsersRepository {
     username,
     password,
     email,
-    admin,
     driver_license,
   }: ICreateUserDTO): Promise<User> {
     const user = this.usersRepository.create({
@@ -24,7 +23,6 @@ class UsersRepositoryImpl implements IUsersRepository {
       username,
       password,
       email,
-      admin,
       driver_license,
     });
 

@@ -22,7 +22,6 @@ class CreateUserUseCase {
       username,
       password,
       email,
-      admin: false,
       driver_license,
     });
 

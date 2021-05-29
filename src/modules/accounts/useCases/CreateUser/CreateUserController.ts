@@ -9,17 +9,21 @@ class CreateUserController {
     request: Request,
     response: Response
   ): Promise<Response<User | Error>> {
-    const createUserUseCase = container.resolve(CreateUserUseCase);
-    const { name, username, password, email, driver_license } = request.body;
-    const user = await createUserUseCase.execute({
-      name,
-      username,
-      password,
-      email,
-      driver_license,
-    });
+    try {
+      const createUserUseCase = container.resolve(CreateUserUseCase);
+      const { name, username, password, email, driver_license } = request.body;
+      const user = await createUserUseCase.execute({
+        name,
+        username,
+        password,
+        email,
+        driver_license,
+      });
 
-    return response.json(user);
+      return response.status(201).json(user);
+    } catch (e) {
+      return response.status(400).json({ error: e.message });
+    }
   }
 }
 

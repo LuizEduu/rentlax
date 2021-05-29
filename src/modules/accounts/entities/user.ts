@@ -28,10 +28,10 @@ class User {
   driver_license: string;
 
   @Column()
-  admin: boolean;
+  isAdmin: boolean;
 
   @CreateDateColumn()
-  created__at: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
