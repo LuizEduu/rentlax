@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../errors/AppError";
+import { deleteFile } from "../../../../utils/file";
 import { UsersRepositoryImpl } from "../../repositories/implementations/UsersRepositoryImpl";
 
 interface IRequest {
@@ -19,6 +20,11 @@ class UpdateUserAvatarUseCase {
 
     if (!user) {
       throw new AppError("User does not exists");
+    }
+
+    if (user.avatar) {
+      console.log("opaa");
+      await deleteFile(`./tmp/avatar/${user.avatar}`);
     }
 
     user.avatar = avatar;
