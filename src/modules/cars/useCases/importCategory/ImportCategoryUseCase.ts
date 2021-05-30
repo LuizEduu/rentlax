@@ -2,6 +2,7 @@ import csvParse from "csv-parse";
 import fs from "fs";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "../../../../errors/AppError";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IImportCategories {
@@ -49,6 +50,10 @@ class ImportCategoryUseCase {
   }
 
   async execute(file: Express.Multer.File): Promise<IImportCategories[]> {
+    if (file.mimetype !== "text/csv") {
+      throw new AppError("the file is not of the csv type");
+    }
+
     const categories = await this.loadCategories(file);
 
     categories.map(async (category) => {
