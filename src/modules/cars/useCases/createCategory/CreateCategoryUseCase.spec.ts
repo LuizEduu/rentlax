@@ -1,4 +1,4 @@
-import { Category } from "../../entities/Category";
+import { AppError } from "../../../../errors/AppError";
 import { CreateCategoryRepositoryInMemory } from "../../repositories/in-memory/CategoriesRepositoryInMemory";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
@@ -12,6 +12,7 @@ describe("Create Category", () => {
       categoriesRepositoryInMemory
     );
   });
+
   it("should be able to create a new category", async () => {
     const category = await createCategoryUseCase.execute({
       name: "Category test",
@@ -26,5 +27,19 @@ describe("Create Category", () => {
     });
 
     expect(category);
+  });
+
+  it("should not be able to create a duplicate category", async () => {
+    expect(async () => {
+      await createCategoryUseCase.execute({
+        name: "Category test",
+        description: "category description test",
+      });
+
+      await createCategoryUseCase.execute({
+        name: "Category test",
+        description: "category description test",
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
