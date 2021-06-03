@@ -25,6 +25,7 @@ class CreateUserUseCase {
     }
 
     const hashedPassword = await hash(password, 10);
+
     const user = await this.userRepository.create({
       name,
       password: hashedPassword,
@@ -32,9 +33,16 @@ class CreateUserUseCase {
       driver_license,
     });
 
-    delete user.password;
-
-    return user;
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      driver_license: user.driver_license,
+      avatar: user.avatar,
+      created_at: user.created_at,
+      updated_at: user.updated_at,
+    };
   }
 }
 
