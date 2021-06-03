@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppError";
 import { Category } from "../../entities/Category";
 import {
   ICategoriesRepository,
@@ -16,6 +17,12 @@ class CreateCategoryRepositoryInMemory implements ICategoriesRepository {
     return this.categories;
   }
   async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
+    const categoryAlreadyExists = await this.findByName(name);
+
+    if (categoryAlreadyExists) {
+      throw new AppError("Category Already Exists");
+    }
+
     const category = new Category();
 
     Object.assign(category, {
