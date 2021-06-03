@@ -23,7 +23,6 @@ class UpdateUserAvatarUseCase {
     }
 
     if (user.avatar) {
-      console.log("opaa");
       await deleteFile(`./tmp/avatar/${user.avatar}`);
     }
 
