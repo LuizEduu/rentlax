@@ -1,10 +1,21 @@
 import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "@errors/AppError";
+
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { User } from "../../entities/user";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
+
+interface IResponse {
+  id: string;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+  driver_license: string;
+  avatar: string;
+  created_at: Date;
+  updated_at: Date;
+}
 
 @injectable()
 class CreateUserUseCase {
@@ -17,7 +28,7 @@ class CreateUserUseCase {
     password,
     email,
     driver_license,
-  }: ICreateUserDTO): Promise<User | Error> {
+  }: ICreateUserDTO): Promise<IResponse | Error> {
     const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     if (userAlreadyExists) {
@@ -33,7 +44,7 @@ class CreateUserUseCase {
       driver_license,
     });
 
-    return {
+    const serializedUser: IResponse = {
       id: user.id,
       name: user.name,
       email: user.email,
@@ -43,6 +54,8 @@ class CreateUserUseCase {
       created_at: user.created_at,
       updated_at: user.updated_at,
     };
+
+    return serializedUser;
   }
 }
 

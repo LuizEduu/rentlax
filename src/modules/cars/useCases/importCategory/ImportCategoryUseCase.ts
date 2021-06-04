@@ -2,7 +2,8 @@ import csvParse from "csv-parse";
 import fs from "fs";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "@errors/AppError";
+
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IImportCategories {

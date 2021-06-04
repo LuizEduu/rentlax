@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "@errors/AppError";
+
 import { Specification } from "../../entities/Specification";
 import {
   ICreateSpecificationDTO,
