@@ -12,7 +12,6 @@
       "@middlewares/*": ["middlewares/*"],
       "@routes/*": ["routes/*"],
       "@utils/*": ["utils/*"],
-      "@database/*": ["database/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
