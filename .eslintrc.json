@@ -59,9 +59,7 @@
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ],
-    "import/no-extraneous-dependencies": [
-      
-    ]
+    "import/no-extraneous-dependencies": []
   },
   "settings": {
     "import/resolver": {
