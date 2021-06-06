@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "rootDir": "./",
+    "rootDir": "./",  
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["modules/*"],
@@ -11,7 +11,7 @@
       "@errors/*": ["errors/*"],
       "@middlewares/*": ["middlewares/*"],
       "@routes/*": ["routes/*"],
-      "@utils/*": ["utils/*"],
+      "@utils/*": ["utils/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
