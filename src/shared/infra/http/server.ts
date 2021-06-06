@@ -7,9 +7,9 @@ import swaggerUi from "swagger-ui-express";
 import "../typeorm";
 
 import "../../container";
+import swaggerConfig from "../../../swagger.json";
 import errorMiddleware from "./middlewares/Error";
 import { router } from "./routes";
-import swaggerConfig from "../../../swagger.json";
 
 const app = express();
 
