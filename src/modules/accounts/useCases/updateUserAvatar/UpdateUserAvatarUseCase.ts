@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "@errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 import { deleteFile } from "@utils/file";
 
-import { UsersRepositoryImpl } from "../../repositories/implementations/UsersRepositoryImpl";
+import { UsersRepositoryImpl } from "../../infra/typeorm/repositories/UsersRepositoryImpl";
 
 interface IRequest {
   avatar: string;

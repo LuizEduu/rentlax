@@ -4,12 +4,12 @@ import express from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 
-import "./database";
+import "../typeorm";
 
-import "./shared/container";
+import "../../container";
 import errorMiddleware from "./middlewares/Error";
 import { router } from "./routes";
-import swaggerConfig from "./swagger.json";
+import swaggerConfig from "../../../swagger.json";
 
 const app = express();
 

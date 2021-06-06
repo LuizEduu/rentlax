@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { User } from "../../entities/user";
+import { User } from "../../infra/typeorm/entities/user";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {

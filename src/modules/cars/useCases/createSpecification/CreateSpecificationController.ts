@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { Specification } from "../../entities/Specification";
+import { Specification } from "../../infra/typeorm/entities/Specification";
 import { CreateSpecificationUseCase } from "./CreateSpecificationUseCase";
 
 class CreateSpecificationController {
