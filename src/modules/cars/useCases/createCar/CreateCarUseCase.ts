@@ -1,4 +1,4 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
 import { ICreateCarsDTO } from "@modules/cars/dtos/ICreateCarsDTO";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
@@ -7,7 +7,10 @@ import { AppError } from "@shared/errors/AppError";
 
 @injectable()
 class CreateCarUseCase {
-  constructor(private carsRepositoryImpl: ICarsRepository) {}
+  constructor(
+    @inject("CarsRepositoryImpl")
+    private carsRepositoryImpl: ICarsRepository
+  ) {}
   async execute({
     name,
     description,
@@ -17,9 +20,8 @@ class CreateCarUseCase {
     brand,
     category_id,
   }: ICreateCarsDTO): Promise<Car> {
-    const checkCarAlreadyExists = await this.carsRepositoryImpl.findByName(
-      name
-    );
+    const checkCarAlreadyExists =
+      await this.carsRepositoryImpl.findByLicensePlate(license_plate);
 
     if (checkCarAlreadyExists) {
       throw new AppError("Car Already Exists!");
