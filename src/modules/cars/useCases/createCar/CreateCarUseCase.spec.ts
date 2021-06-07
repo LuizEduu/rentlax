@@ -1,4 +1,6 @@
+import { User } from "@modules/accounts/infra/typeorm/entities/user";
 import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory";
+import { AppError } from "@shared/errors/AppError";
 
 import { CreateCarUseCase } from "./CreateCarUseCase";
 
@@ -25,12 +27,52 @@ describe("Create car", () => {
       name: "test",
       description: "description test",
       brand: "brand test",
-      daily_rate: 22,
+      available: true,
+      daily_rate: 70,
       category_id: "category id test",
       fine_amount: 30,
       license_plate: "license plate test",
+      created_at: car.created_at,
     });
 
     expect(car).toHaveProperty("id");
+  });
+
+  it("shoud not be able to create a car with exists license plate", () => {
+    expect(async () => {
+      await createCarUseCase.execute({
+        name: "test",
+        description: "description test",
+        daily_rate: 70,
+        license_plate: "license plate test",
+        fine_amount: 30,
+        brand: "brand test",
+        category_id: "category id test",
+      });
+
+      await createCarUseCase.execute({
+        name: "test",
+        description: "description test",
+        daily_rate: 70,
+        license_plate: "license plate test",
+        fine_amount: 30,
+        brand: "brand test",
+        category_id: "category id test",
+      });
+    }).rejects.toBeInstanceOf(AppError);
+  });
+
+  it("shoud be able to create a new car with available true by default", async () => {
+    const car = await createCarUseCase.execute({
+      name: "test",
+      description: "description test",
+      daily_rate: 70,
+      license_plate: "license plate test",
+      fine_amount: 30,
+      brand: "brand test",
+      category_id: "category id test",
+    });
+
+    expect(car.available).toBe(true);
   });
 });
