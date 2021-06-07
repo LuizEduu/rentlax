@@ -12,7 +12,7 @@ interface ICarsRepository {
     category_id,
   }: ICreateCarsDTO): Promise<Car>;
 
-  findByName(name: string): Promise<Car>;
+  findByLicensePlate(license_plate: string): Promise<Car>;
 }
 
 export { ICarsRepository };
