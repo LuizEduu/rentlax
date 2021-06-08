@@ -4,13 +4,13 @@ import express from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 
-import "../typeorm";
-
-import "../../container";
 import swaggerConfig from "../../../swagger.json";
+import "../../container";
+import createConnection from "../typeorm";
 import errorMiddleware from "./middlewares/Error";
 import { router } from "./routes";
 
+createConnection("database_postgres");
 const app = express();
 
 app.use(cors());
