@@ -30,7 +30,7 @@ describe("Create Category", () => {
     expect(category);
   });
 
-  it("should not be able to create a duplicate category", async () => {
+  it("should not be able to create a duplicate category", () => {
     expect(async () => {
       await createCategoryUseCase.execute({
         name: "Category test",

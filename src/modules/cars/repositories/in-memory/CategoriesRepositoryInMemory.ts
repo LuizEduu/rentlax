@@ -28,6 +28,10 @@ class CreateCategoryRepositoryInMemory implements ICategoriesRepository {
 
     return category;
   }
+
+  async findById(id: string): Promise<Category> {
+    return this.categories.find((category) => category.id === id);
+  }
 }
 
 export { CreateCategoryRepositoryInMemory };
