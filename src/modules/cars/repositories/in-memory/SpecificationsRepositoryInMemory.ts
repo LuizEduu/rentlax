@@ -6,7 +6,7 @@ import {
 } from "../ISpecificationsRepository";
 
 class SpecificationsRepositoryInMemory implements ISpecificationsRepository {
-  specifications: Specification[] = [];
+  private specifications: Specification[] = [];
   async create({
     name,
     description,
@@ -30,6 +30,14 @@ class SpecificationsRepositoryInMemory implements ISpecificationsRepository {
   }
   async list(): Promise<Specification[]> {
     return this.specifications;
+  }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = this.specifications.filter((specification) =>
+      ids.includes(specification.id)
+    );
+
+    return specifications;
   }
 }
 

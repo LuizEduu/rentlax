@@ -1,16 +1,21 @@
-import { User } from "@modules/accounts/infra/typeorm/entities/user";
 import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory";
+import { CategoryRepositoryInMemory } from "@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory";
 import { AppError } from "@shared/errors/AppError";
 
 import { CreateCarUseCase } from "./CreateCarUseCase";
 
 let carsRepositoryInMemory: CarsRepositoryInMemory;
+let categoriesRepositoryInMemory: CategoryRepositoryInMemory;
 let createCarUseCase: CreateCarUseCase;
 
 describe("Create car", () => {
   beforeEach(() => {
     carsRepositoryInMemory = new CarsRepositoryInMemory();
-    createCarUseCase = new CreateCarUseCase(carsRepositoryInMemory);
+    categoriesRepositoryInMemory = new CategoryRepositoryInMemory();
+    createCarUseCase = new CreateCarUseCase(
+      carsRepositoryInMemory,
+      categoriesRepositoryInMemory
+    );
   });
   it("should be able to create a new car", async () => {
     const car = await createCarUseCase.execute({

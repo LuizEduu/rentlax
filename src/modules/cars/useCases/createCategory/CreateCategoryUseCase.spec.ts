@@ -1,14 +1,14 @@
 import { AppError } from "@shared/errors/AppError";
 
-import { CreateCategoryRepositoryInMemory } from "../../repositories/in-memory/CategoriesRepositoryInMemory";
+import { CategoryRepositoryInMemory } from "../../repositories/in-memory/CategoriesRepositoryInMemory";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
-let categoriesRepositoryInMemory: CreateCategoryRepositoryInMemory;
+let categoriesRepositoryInMemory: CategoryRepositoryInMemory;
 let createCategoryUseCase: CreateCategoryUseCase;
 
 describe("Create Category", () => {
   beforeEach(() => {
-    categoriesRepositoryInMemory = new CreateCategoryRepositoryInMemory();
+    categoriesRepositoryInMemory = new CategoryRepositoryInMemory();
     createCategoryUseCase = new CreateCategoryUseCase(
       categoriesRepositoryInMemory
     );
