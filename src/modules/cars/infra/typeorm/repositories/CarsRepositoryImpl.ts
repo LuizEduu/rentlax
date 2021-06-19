@@ -13,6 +13,7 @@ class CarsRepositoryImpl implements ICarsRepository {
   }
 
   async create({
+    id,
     name,
     description,
     daily_rate,
@@ -22,6 +23,7 @@ class CarsRepositoryImpl implements ICarsRepository {
     category_id,
   }: ICreateCarsDTO): Promise<Car> {
     const car = this.carsRepository.create({
+      id,
       name,
       description,
       daily_rate,
