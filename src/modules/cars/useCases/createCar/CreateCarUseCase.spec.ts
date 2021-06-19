@@ -17,7 +17,13 @@ describe("Create car", () => {
       categoriesRepositoryInMemory
     );
   });
+
   it("should be able to create a new car", async () => {
+    const category = await categoriesRepositoryInMemory.create({
+      name: "category test",
+      description: "description test",
+    });
+
     const car = await createCarUseCase.execute({
       name: "test",
       description: "description test",
@@ -25,7 +31,7 @@ describe("Create car", () => {
       license_plate: "license plate test",
       fine_amount: 30,
       brand: "brand test",
-      category_id: "category id test",
+      category_id: category.id,
     });
 
     expect(car).toMatchObject({
@@ -34,7 +40,7 @@ describe("Create car", () => {
       brand: "brand test",
       available: true,
       daily_rate: 70,
-      category_id: "category id test",
+      category_id: category.id,
       fine_amount: 30,
       license_plate: "license plate test",
       created_at: car.created_at,
@@ -52,7 +58,7 @@ describe("Create car", () => {
         license_plate: "license plate test",
         fine_amount: 30,
         brand: "brand test",
-        category_id: "category id test",
+        category_id: "category_test",
       });
 
       await createCarUseCase.execute({
@@ -62,12 +68,17 @@ describe("Create car", () => {
         license_plate: "license plate test",
         fine_amount: 30,
         brand: "brand test",
-        category_id: "category id test",
+        category_id: "category_test",
       });
     }).rejects.toBeInstanceOf(AppError);
   });
 
   it("shoud be able to create a new car with available true by default", async () => {
+    const category = await categoriesRepositoryInMemory.create({
+      name: "category test",
+      description: "description test",
+    });
+
     const car = await createCarUseCase.execute({
       name: "test",
       description: "description test",
@@ -75,7 +86,7 @@ describe("Create car", () => {
       license_plate: "license plate test",
       fine_amount: 30,
       brand: "brand test",
-      category_id: "category id test",
+      category_id: category.id,
     });
 
     expect(car.available).toBe(true);
