@@ -1,10 +1,11 @@
 import { getRepository, Repository } from "typeorm";
 
-import { Specification } from "../entities/Specification";
 import {
   ICreateSpecificationDTO,
   ISpecificationsRepository,
 } from "@modules/cars/repositories/ISpecificationsRepository";
+
+import { Specification } from "../entities/Specification";
 
 class SpecificationsRepositoryImpl implements ISpecificationsRepository {
   private specificationsRepository: Repository<Specification>;
@@ -35,6 +36,12 @@ class SpecificationsRepositoryImpl implements ISpecificationsRepository {
 
   async list(): Promise<Specification[]> {
     return this.specificationsRepository.find();
+  }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.specificationsRepository.findByIds(ids);
+
+    return specifications;
   }
 }
 
