@@ -26,9 +26,7 @@ class CreateCarSpecificationUseCase {
 
     car.specifications = specifications;
 
-    const updatedCar = await this.carsRepositoryImpl.create(car);
-
-    console.log(updatedCar);
+    await this.carsRepositoryImpl.create(car);
   }
 }
 
