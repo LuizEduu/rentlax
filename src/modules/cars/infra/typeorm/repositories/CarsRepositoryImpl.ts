@@ -54,7 +54,6 @@ class CarsRepositoryImpl implements ICarsRepository {
     }
 
     if (name) {
-      console.log(name);
       listAvailableCarsQuery.andWhere("c.name = :name", { name });
     }
 
@@ -67,6 +66,10 @@ class CarsRepositoryImpl implements ICarsRepository {
     const cars = await listAvailableCarsQuery.getMany();
 
     return cars;
+  }
+
+  findById(id: string): Promise<Car> {
+    return this.carsRepository.findOne(id);
   }
 }
 
