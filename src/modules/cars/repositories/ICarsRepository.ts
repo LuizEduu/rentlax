@@ -10,6 +10,7 @@ interface ICarsRepository {
     fine_amount,
     brand,
     category_id,
+    specifications,
   }: ICreateCarsDTO): Promise<Car>;
 
   findByLicensePlate(license_plate: string): Promise<Car>;

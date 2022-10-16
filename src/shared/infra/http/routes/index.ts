@@ -13,6 +13,6 @@ router.use("/categories", categoriesRoutes);
 router.use("/specifications", specificationRouter);
 router.use("/users", usersRouters);
 router.use(authenticateRoutes);
-router.use("/cars/", carsRouter);
+router.use("/cars", carsRouter);
 
 export { router };

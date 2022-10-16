@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
+import { container } from "tsyringe";
 
 import { UsersRepositoryImpl } from "@modules/accounts/infra/typeorm/repositories/UsersRepositoryImpl";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 
 interface IPayload {
@@ -21,15 +23,18 @@ export async function ensureAuthenticated(
 
   const [, token] = authHeader.split(" ");
 
+  console.log(token);
+
   try {
     const { sub: user_id } = verify(
       String(token),
       "008deb5dc5a86ac66840422d82ef130e"
     ) as IPayload;
 
-    const userRepository = new UsersRepositoryImpl();
+    const usersRepository: IUsersRepository =
+      container.resolve(UsersRepositoryImpl);
 
-    const user = await userRepository.findById(user_id);
+    const user = await usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError("User does not exists!");
