@@ -44,6 +44,7 @@
     "no-empty-function": "off",
     "no-empty-pattern": "off",
     "lines-between-class-members": "off",
+    "import/no-extraneous-dependencies": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -58,11 +59,6 @@
         "groups": ["module", "/^@/", ["parent", "sibling", "index"]],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
-    ],
-    "import/no-extraneous-dependencies": [
-      "error",
-      { "devDependencies": ["**/*.spec.js"] }
-
     ]
   },
   "settings": {
